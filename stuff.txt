@@ -1,0 +1,72 @@
+FILE CREATION
+FRONTEND
+npm create vite@latest frontend -- --template react
+cd frontend
+npm install
+mkdir src\components
+mkdir src\pages
+mkdir src\services
+cd ..
+
+BACKEND
+mkdir backend
+cd backend
+go mod init contract-risk-analyzer
+ni main.go
+ni routes.go
+ni handlers.go
+ni ai.go
+ni database.go
+ni model.go
+mkdir uploads
+cd ..
+
+NLP SERVICES
+mkdir nlp-service
+cd nlp-service
+ni app.py
+ni pdf_reader.py
+ni contract_detector.py
+ni risk_engine.py
+ni chatbot.py
+ni prompts.py
+ni requirements.txt
+mkdir contracts
+cd ..
+
+Root files
+ni README.md
+ni .gitignore
+
+
+
+DEPENDENCIES
+go mod tidy
+
+NLP SERVICES
+python --version
+cd nlp-service
+python -m venv venv
+.\venv\Scripts\Activate
+pip install -r requirements.txt
+pip install huggingface-hub safetensors
+
+
+
+
+RUN FRONTEND
+cd frontend
+npm run dev
+
+RUN NLP SERVICES
+cd nlp-service
+.\venv\Scripts\Activate
+uvicorn app:app --reload
+
+RUN BACKEND
+cd backend
+go run .
+
+
+
+
